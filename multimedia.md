@@ -69,5 +69,3 @@ export default function App() {
 }
 ```
 A continuación se muestra una vista previa de la sintaxis de `useState`:
-
-![Sintaxis de useState](/home/gn6ks/Escritorio/_estudios/_dam2/_notas/sintaxisUseState.png)
