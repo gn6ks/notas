@@ -1,31 +1,29 @@
 ---
-titulo: Programación Multimedia y Dispositivos moviles
-autor: gn6ks
-creado: 12-09-2025
-profesor: fsegura@florida-uni.es
+titulo: Programación Multimedia y Dispositivos moviles  
+autor: gn6ks  
+creado: 12-09-2025  
+profesor: fsegura@florida-uni.es  
 ---
 
 ## React Native
 
 ### Eventos React
 
-React Native funciona mediante la orientación de eventos, es decir que se modifican mediante eventos y no mediante objetos.
-Manejadores de eventos "handler" funcion que maneja el evento.
+React Native funciona mediante la orientación de eventos, es decir que se modifican mediante eventos y no mediante objetos.  
+Manejadores de eventos "handler": función que maneja el evento.  
 La sintaxis en general de react-native consiste en camelCase.
 
 ```javascript
 onNombreEvento();
 ```
 
-Para que la aplicación reaccione a un evento, es necesario
-asociarle una lógica que se ejecutará cuando se produzca el
-evento -> Manejadores de eventos.
+Para que la aplicación reaccione a un evento, es necesario asociarle una lógica que se ejecutará cuando se produzca el evento → Manejadores de eventos.
 
 ```javascript
 handlerOnPress();
 ```
 
-ejemplo de handlerOnPress() detallado:
+Ejemplo de handlerOnPress() detallado:
 
 ```javascript
 export default function App() {
@@ -46,9 +44,7 @@ export default function App() {
 
 Utilidades ya implementadas en el propio React sin las cuales no es posible hacer ciertas acciones.
 
-En React Native no actualizamos las variables
-propias de un componente, lo que hacemos es actualizar su
-estado.
+En React Native no actualizamos las variables propias de un componente, lo que hacemos es actualizar su estado.
 
 ```javascript
 import { View, Pressable, Text, StyleSheet } from "react-native";
@@ -68,4 +64,7 @@ export default function App() {
   );
 }
 ```
+
 A continuación se muestra una vista previa de la sintaxis de `useState`:
+
+![Sintaxis useState](./sintaxisUseState.png)
