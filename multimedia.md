@@ -67,7 +67,7 @@ export default function App() {
 
 A continuación se muestra una vista previa de la sintaxis de `useState`:
 
-![Sintaxis useState](./sintaxisUseState.png)
+![Sintaxis useState](assets/sintaxisUseState.png)
 
 ### Ejercicios Actividad 03 - onPress / onChangeText 26-09-25
 
