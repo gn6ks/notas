@@ -382,3 +382,296 @@ public class proyecto {
 ```
 
 #### Sección 2 Tema 1
+
+```java
+/*ejec 1 - Escriu un programa que reba com a paràmetre d’entrada la ruta d’un fitxer, llija el seu
+contingut i el mostre per pantalla caràcter a caràcter.*/
+package Tema1Ejercicios2;
+
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+
+
+public class ejec1 {
+    public static void main(String[] args) {
+        String rutaArchivo = args[0]; //se pasa la ruta por parametro
+        File fitxer = new File(rutaArchivo); //manejador del archivo
+
+        try {
+            FileReader archivo = new FileReader(fitxer, StandardCharsets.UTF_8); //para leer caracter a caracter (16 bits)
+            int valor = archivo.read(); //cada caracter es un int()
+            while (valor != -1) { //mientras haya algo en el valor
+                System.out.print((char) valor); //se imprime el valor a character
+                valor = archivo.read(); //se machaca el contenido guardado en memoria por el nuevo contenido
+                Thread.sleep(50); //tiempo de espera entre caracteres
+            }
+            archivo.close();
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
+}
+```
+
+```java
+/*ejec 2 - Crea un altre programa, modificació de l’anterior, que admeta un altre paràmetre d’entrada
+addicional que permeta especificar la velocitat a la qual es mostren els caràcters.*/
+package Tema1Ejercicios2;
+
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+
+
+public class ejec2 {
+    public static void main(String[] args) {
+        String rutaArchivo = args[0]; //parametro del archivo
+        String velocidad = args[1]; //parametro de la velocidad
+        int milisecons = Integer.parseInt(velocidad); //string a entero
+        File fitxer = new File(rutaArchivo); //manejador de archivo
+
+        try {
+            FileReader archivo = new FileReader(fitxer, StandardCharsets.UTF_8); //reader para leer caracter a caracter
+            int valor = archivo.read();
+            while (valor != -1) {
+                System.out.print((char) valor);
+                valor = archivo.read();
+                Thread.sleep(milisecons); //la velocidad es la que dice el usuario por parametro
+            }
+            archivo.close();
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+    }
+}
+```
+
+```java
+/*ejec 3 - Realitza un altre programa que mostre un nombre determinat de caràcters per pantalla (per
+exemple 100), espere a que l’usuari presione alguna tecla, mostre un altre bloc de caràcters,
+torne a esperar, i així successivament fins mostrar tot el contingut.*/
+//en vez de hacer cada 100 caracteres, simplemente dije que lo hiciera linea a linea para practicar el bufferedreader
+//la solución correcta seria hacer un contador, que muestre cada caracter, y hasta que el contador no llegara a 100 se imprimieran
+//una vez llegara a 100 que se hiciera un sc.nextLine(), sin necesidad de buffered
+package Tema1Ejercicios2;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
+public class ejec3 {
+    public static void main(String[] args) {
+        String archivo = args[0];
+        File arch = new File(archivo);
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            FileReader fr = new FileReader(archivo, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(fr); //un buffered es para trabajar con las lineas, es mas rapido y necesita de parametro el filereader
+            String linea = br.readLine(); //cada String linea se guarda lo que el br lee
+            while (linea != null) { //mientras que la linea no este vacia
+                System.out.println(linea); //se imprime en pantalla
+                linea = br.readLine(); //se machaca la memoria para entrar la nueva linea
+                sc.nextLine(); //cada vez q el usuario pulsa una tecla imprime la siguiente linea
+            }
+            fr.close(); //cerrar todo es importante porque da error
+            br.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+/*ejec 4 - Crea un programa que donat un fitxer de text, llija i mostre el seu contingut línia a línia.*/
+//como lo habia hecho de la manera anterior mal este ya lo tenia, es igual al ejec 3 
+package Tema1Ejercicios2;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+
+public class ejec4 {
+    public static void main(String[] args) {
+        String archivo = args[0];
+        File arch = new File(archivo);
+
+        try {
+            FileReader fr = new FileReader(archivo, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = br.readLine();
+            }
+            fr.close();
+            br.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+```
+
+```java
+/*ejec 5 - Crea un altre programa, modificació de l’anterior, que accepte com a paràmetres d’entrada
+un nombre que indique la velocitat a la qual es mostren les línies.*/
+//igual que el ejercicio anterior pero pasandole la velocidad por parametro, pasandolo de string a integer
+package Tema1Ejercicios2;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
+
+public class ejec5 {
+    public static void main(String[] args) {
+        String archivo = args[0];
+        String velocidad = args[1];
+        int velocidadMiliseconds = Integer.parseInt(velocidad);
+
+        try {
+            FileReader fr = new FileReader(archivo, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = br.readLine();
+                Thread.sleep(velocidadMiliseconds);
+            }
+            fr.close();
+            br.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+/*ejec 6 - Crea un altre programa a partir de l’anterior que en comptes de mostrar el contingut per
+consola l’escriga en un altre fitxer del mateix directori.*/
+package Tema1Ejercicios2;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class ejec6 {
+    public static void main(String[] args) {
+        //archivos parametros y linea
+        String linea;
+        String archivo = args[0];
+        File f1 = new File(archivo);
+        String archivoCopia = args[1];
+        File f2 = new File(archivoCopia);
+
+        try {
+            //leemos con fr y br el primer archivo donde se encuentra la informacion
+            FileReader fr = new FileReader(f1, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(fr);
+            //con fw y bw vamos a escribir todo en el segundo archivo
+            FileWriter fw = new FileWriter(f2, StandardCharsets.UTF_8);
+            BufferedWriter bw = new BufferedWriter(fw);
+            while ((linea = br.readLine()) != null) { //mientras que la linea no se encuentre vacia
+                bw.write(linea); //se escribe en f2
+                bw.newLine(); //con un salto de linea para que todo no se encuentre pegado entre si
+                bw.flush(); //sirve para forzar a que se escriba SEA LO QUE SEA
+            }
+            fr.close(); //cerrar todo
+            br.close();
+            fw.close();
+            bw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+/*ejec 7 - Realitza un programa que permeta rebre per teclat una sèrie de strings per part de l’usuari
+i els vaja escrivint en un fitxer de text. Com a condició de finalització, l’usuari haurà
+d’escriure un string que siga “exit”.*/
+package Tema1Ejercicios2;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
+public class ejec7 {
+    public static void main(String[] args) {
+        //parametros
+        Scanner sc = new Scanner(System.in);
+        String linea;
+        String archivo = args[0];
+        File f1 = new File(archivo);
+
+        try {
+            FileWriter fw = new FileWriter(f1, StandardCharsets.UTF_8);
+            BufferedWriter bw = new BufferedWriter(fw);
+            System.out.println("Lineas a escribir: ");
+            linea = sc.nextLine(); //en vez de leer todo con un fr br, lo lee de la consola
+            while (!linea.equals("exit") ) {
+                bw.write(linea); //se escrie la primera linea
+                System.out.println("Lineas a escribir: ");
+                linea = sc.nextLine(); //se borra de la memoria la ultima linea asi exit no sale en el fichero
+                bw.newLine(); //salto linea
+                bw.flush(); //se fuerza
+            }
+            fw.close(); //todo cerrado
+            bw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+/*ejec 8 - Modifica el programa anterior (o crea un programa nou) per a que el nom del fitxer incloga
+la data i l’hora de creació.*/
+package Tema1Ejercicios2;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class ejec8 {
+    public static void main(String[] args) {
+        //parametros
+        Date d1 = new Date(); //clase date para que me de la fecha del sistema, como el archivo se crea cuando se ejecuta el programa, te quitas 2 de un 1 tiro
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss"); //formatear porque ":" no se permite en el nombre del archivo, sino renameTo() da false
+        Scanner sc = new Scanner(System.in);
+        String linea;
+        String archivo = args[0];
+        File f1 = new File(sdf.format(d1) + ".txt"); //se usa el formato para dar formato al archivo
+
+        //esto es exactamente igual que el ejercicio anterior
+        try {
+            FileWriter fw = new FileWriter(f1, StandardCharsets.UTF_8);
+            BufferedWriter bw = new BufferedWriter(fw);
+            System.out.println("Lineas a escribir: ");
+            linea = sc.nextLine();
+            while (!linea.equals("exit")) {
+                bw.write(linea);
+                System.out.println("Lineas a escribir: ");
+                linea = sc.nextLine();
+                bw.newLine();
+                bw.flush();
+            }
+            fw.close();
+            bw.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
