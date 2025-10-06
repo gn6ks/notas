@@ -81,11 +81,11 @@ const imparesPos = numeros.filter((elem, indice) => indice % 2 === 1);
 console.log(imparesPos);
 
 const nums = [1, 2, 3, 4, 5, 6];
-const nPares = (nums) => (nums.filter(elem => elem % 2 === 0));
+const nPares = (nums) => nums.filter((elem) => elem % 2 === 0);
 console.log(nPares(nums));
 
 const words = ["sol", "pluja", "mar"];
-const words3 = (words) => (words.filter(elem => elem.length > 3));
+const words3 = (words) => words.filter((elem) => elem.length > 3);
 console.log(words3(words));
 ```
 
@@ -129,46 +129,48 @@ Ejercicios Clase 18-09-2025, Reduce, Filter, Map:
 //A partir d'un array de numeros, mostra la suma de tots ells
 let array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 //se hace una constante para guardar los elementos acumulados, el acumulador = 0, se va sumando elemento a elemento
-const array1Sumado = (array1) => (array1.reduce((accum , elem) => accum + elem, 0));
+const array1Sumado = (array1) =>
+  array1.reduce((accum, elem) => accum + elem, 0);
 console.log(array1Sumado(array1));
 //45
 
 //A partir d'un array d'strings i numeros, mostra un string que els continga tots
-let array2 = ['a', 1, 'b', 2, 'c', 3];
+let array2 = ["a", 1, "b", 2, "c", 3];
 //para poder concatenar loos elementos, se les pide que se sumen, pero no acumulados en un numero, sino con el elemento '' vacio
-const array2Concat = (array2) => (array2.reduce((accum, elem) => accum + elem, ""));
+const array2Concat = (array2) =>
+  array2.reduce((accum, elem) => accum + elem, "");
 console.log(array2Concat(array2));
 // a1b2c3
 
 // A partir d'un array de dies, em torne un OBJECTE amb tants atributs com dies i la posició de cada dia
-// És a dir per a l'array ['dilluns', 'dimarts', 'dimecres'] 
+// És a dir per a l'array ['dilluns', 'dimarts', 'dimecres']
 // torne un objecte {dilluns:0, dimarts:1, dimecres:2}
-let dies = ['dilluns', 'dimarts', 'dimecres'];
+let dies = ["dilluns", "dimarts", "dimecres"];
 //se reduce el array, para que segun el elemento del array se determine su posicion en el indice y se retorne en modo de {} objeto
 const diesPos = dies.reduce((accum, elem, indice) => {
-    accum[elem] = indice;
-    return accum;
+  accum[elem] = indice;
+  return accum;
 }, {});
 console.log(diesPos);
-
 
 //A partir d'un array amb objectes Musics (nom i instrument que toca)
 //Que torne un array amb els noms de tots els components
 // [ 'Joan', 'Pep', 'Vicent Lloret', 'Ariadna', 'Guillem' ]
 let musics = [
-    {'nom': 'Joan', 'instrument': 'vocal'},
-    {'nom': 'Pep', 'instrument': 'guitarra'},
-    {'nom': 'Vicent Lloret', 'instrument': 'guitarra'},
-    {'nom': 'Ariadna', 'instrument': 'bateria'},
-    {'nom': 'Guillem', 'instrument': 'baix'}
-]
+  { nom: "Joan", instrument: "vocal" },
+  { nom: "Pep", instrument: "guitarra" },
+  { nom: "Vicent Lloret", instrument: "guitarra" },
+  { nom: "Ariadna", instrument: "bateria" },
+  { nom: "Guillem", instrument: "baix" },
+];
 //tenemos un array de musicos
 //que se reduce, sabiendo que es el array y el elemento es musico, entonces hacemos un .push() para que el array guarde solo el elemento del nombre, gracias a las propiedades de javascript, sabe que propiedades globales son dentro de cada objeto.
 //se retorna el array de solo los nombres, no de los objetos
-const nomsMusics = (musics) => (musics.reduce((arryMuscis, musico) => {
+const nomsMusics = (musics) =>
+  musics.reduce((arryMuscis, musico) => {
     arryMuscis.push(musico.nom);
     return arryMuscis;
-}, []));
+  }, []);
 console.log(nomsMusics(musics));
 
 //Ara feu-ho utilitzant map()
@@ -188,59 +190,61 @@ console.log(nombresFilt);
 //con reduce se hace todo dentro de una misma constante
 //se usa un array y el elemento, se filtra segun su propiedad, y luego hacemos un push de la propiedad nombre
 //asi se restorna el array entero, solo con lo que se ha pusheado
-const nomsMusicsGui = (musics) => (musics.reduce((arryMuscis, musico) => {
+const nomsMusicsGui = (musics) =>
+  musics.reduce((arryMuscis, musico) => {
     if (musico.instrument === "guitarra") {
-        arryMuscis.push(musico.nom);
+      arryMuscis.push(musico.nom);
     }
     return arryMuscis;
-}, []));
+  }, []);
 console.log(nomsMusicsGui(musics));
 
 //----------------------------------------------------------------------------------
 
 const users = [
-    {
-        id: 1,
-        name: "Jonathon Haley",
-        username: "Monte.Weber2",
-        email: "Daphne43@yahoo.com",
-        phone: "1-563-675-1857 x11708",
-        website: "carmela.net",
-        password: "hashed_password"
-    },
-    {
-        id: 2,
-        name: "Dean John",
-        username: "dd.1",
-        email: "deno@google.com",
-        phone: "1-123-543-1857 123212",
-        website: "dd.net",
-        password: "Dean_hashed_password"
-    }];
+  {
+    id: 1,
+    name: "Jonathon Haley",
+    username: "Monte.Weber2",
+    email: "Daphne43@yahoo.com",
+    phone: "1-563-675-1857 x11708",
+    website: "carmela.net",
+    password: "hashed_password",
+  },
+  {
+    id: 2,
+    name: "Dean John",
+    username: "dd.1",
+    email: "deno@google.com",
+    phone: "1-123-543-1857 123212",
+    website: "dd.net",
+    password: "Dean_hashed_password",
+  },
+];
 
 //Que torne un array d'objectes amb l'email, el tel i la web
 [
-    {
-        email: 'Daphne43@yahoo.com',
-        website: 'carmela.net',
-        phone: '1-563-675-1857 x11708'
-    },
-    {
-        email: 'deno@google.com',
-        website: 'dd.net',
-        phone: '1-123-543-1857 123212'
-    }
-]
+  {
+    email: "Daphne43@yahoo.com",
+    website: "carmela.net",
+    phone: "1-563-675-1857 x11708",
+  },
+  {
+    email: "deno@google.com",
+    website: "dd.net",
+    phone: "1-123-543-1857 123212",
+  },
+];
 
 //hacemos un reduce() en el que acumulamos en un array, los objetos que necesitamos, y de los objetos solo cogemos las propiedades que nos interesan
 //en vez de crear un objeto temporal, le metemos en el push el objeto nuevo creado y retornamos el array
 const usersContactInfo = users.reduce((array, user) => {
-    array.push({
-        email: user.email,
-        website: user.website,
-        phone: user.phone
-    });
-    return array;
+  array.push({
+    email: user.email,
+    website: user.website,
+    phone: user.phone,
+  });
+  return array;
 }, []);
 
 console.log(usersContactInfo);
@@ -248,50 +252,56 @@ console.log(usersContactInfo);
 //-----------------------------------------------------
 //A partir d'un arrar de comandes com el proporcionat
 let comandes = [
-    {
-        client: {
-            nom: "Manel Viel"
-        },
-        productes: [
-            {
-                id: 1,
-                nom: "Taronges"
-            }, {
-                id: 2,
-                nom: "Pomes"
-            }
-        ]
-    }, {
-        client: {
-            nom: "Joan Mi"
-        },
-        productes: [
-            {
-                id: 3,
-                nom: "Peres"
-            }, {
-                id: 2,
-                nom: "Pomes"
-            }
-        ]
-    }, {
-        client: {
-            nom: "Tomas Marin"
-        },
-        productes: [
-            {
-                id: 4,
-                nom: "Freses"
-            }, {
-                id: 2,
-                nom: "Peres"
-            }, {
-                id: 1,
-                nom: "Platans"
-            }
-        ]
-    }
-]
+  {
+    client: {
+      nom: "Manel Viel",
+    },
+    productes: [
+      {
+        id: 1,
+        nom: "Taronges",
+      },
+      {
+        id: 2,
+        nom: "Pomes",
+      },
+    ],
+  },
+  {
+    client: {
+      nom: "Joan Mi",
+    },
+    productes: [
+      {
+        id: 3,
+        nom: "Peres",
+      },
+      {
+        id: 2,
+        nom: "Pomes",
+      },
+    ],
+  },
+  {
+    client: {
+      nom: "Tomas Marin",
+    },
+    productes: [
+      {
+        id: 4,
+        nom: "Freses",
+      },
+      {
+        id: 2,
+        nom: "Peres",
+      },
+      {
+        id: 1,
+        nom: "Platans",
+      },
+    ],
+  },
+];
 
 // tornar un array anomenat llistat de comandes, on cada element siga un array d'objectes on
 // aparega només el client i el producte de la seua comanda.
@@ -313,17 +323,17 @@ let comandes = [
 //     ]
 // ]
 
-
 //este me costó un poco mas de entender
 //un map() de las comandas porque es el array de objetos, pero cada objeto tiene 2 objetos dentro, cliente y productes
 //entonces ya con la comanda mapeada, mapeas el producto para saber el cliente y el producto
 //y como map devuelve siempre un array te quitas 2 de un 1 tiro
-const llistatDeComandes = (comandes) => comandes.map(comanda =>
-    comanda.productes.map(producte => ({
-        client: comanda.client.nom,
-        productes: producte.nom
+const llistatDeComandes = (comandes) =>
+  comandes.map((comanda) =>
+    comanda.productes.map((producte) => ({
+      client: comanda.client.nom,
+      productes: producte.nom,
     }))
-);
+  );
 
 console.log(llistatDeComandes(comandes));
 ```
@@ -543,20 +553,106 @@ console.log(tornaId(dadesUsuaris[0]));
 //Creeu una funció (POSEU-LI vosaltres un nom descriptiu) que amb un reduce/filter, torne un array amb els id d'aquelles empreses que no tenen website
 //[{ id: 2 }, { id: 5 }]
 //se usa un reduce para acumular todo en un array de objetos y el elemento se llama user, de tal manera que si su website esta vacia esta hace un push de su id y devuelve el array de los objetos
-const EmpresaIdReduce = (dadesUsuaris) => (
+const EmpresaIdReduce = (dadesUsuaris) =>
   dadesUsuaris.reduce((array, user) => {
     if (user.website === "") {
       array.push(user.id);
     }
-    return array
-  }, [])
-);
+    return array;
+  }, []);
 console.log(EmpresaIdReduce(dadesUsuaris));
 
 //reduce en una sola línia
 // [ { id: 2 }, { id: 5 } ]
 //se reduce todo solo si la website esta vacia, en caso correcto se hace un concat del id del usu, sino nada, y devuelve el array de objetos
 console.log(
-  dadesUsuaris.reduce((arr, usu) => usu.website === "" ? arr.concat({ id: usu.id }) : arr, [])
+  dadesUsuaris.reduce(
+    (arr, usu) => (usu.website === "" ? arr.concat({ id: usu.id }) : arr),
+    []
+  )
 );
+```
+
+Ejercicios de repaso 6-10-2025
+
+```javascript
+const usuarios = [
+  {
+    id: 1,
+    name: "Leanne Graham",
+    email: "Sincere@april.biz",
+    address: { city: "Gwenborough", zipcode: "92998-3874" },
+    company: { name: "Romaguera-Crona" },
+    posts: [
+      { id: 1, title: "Post 1", likes: 10 },
+      { id: 2, title: "Post 2", likes: 20 },
+    ],
+  },
+  {
+    id: 2,
+    name: "Ervin Howell",
+    email: "Shanna@melissa.tv",
+    address: { city: "Wisokyburgh", zipcode: "90566-7771" },
+    company: { name: "Deckow-Crist" },
+    posts: [
+      { id: 3, title: "Post 3", likes: 5 },
+      { id: 4, title: "Post 4", likes: 15 },
+    ],
+  },
+];
+//solo las ciudades
+const ciudadesUnicas = (usuarios) =>
+  usuarios.reduce((arrayCiudades, usu) => {
+    arrayCiudades.push({
+      city: usu.address.city,
+    });
+    return arrayCiudades;
+  }, []);
+console.log(ciudadesUnicas(usuarios));
+
+//total de likes en posts de cada usuario
+const totalLikesUser = (usuarios) =>
+  usuarios.map((usuario) => ({
+    name: usuario.name,
+    totalLikes: usuario.posts.reduce((accum, num) => (accum += num.likes), 0),
+  }));
+console.log(totalLikesUser(usuarios));
+
+//saber post con mas likes
+const postMasPopular = (usuarios) => {
+  let postMaxLikes = usuarios[0].posts[0];
+  usuarios.forEach((usuario) => {
+    usuario.posts.forEach((post) => {
+      if (post.likes > postMaxLikes.likes) {
+        postMaxLikes = post;
+      }
+    });
+  });
+  return postMaxLikes;
+};
+console.log(postMasPopular(usuarios));
+
+//agregar posts a cada usuario dicho por codigo
+const agregarPostUsuario = (usuarios, userId, post) => {
+  usuarios.forEach((usuario) => {
+    if (usuario.id === userId) {
+      usuario.posts.push(post);
+    }
+  });
+  return usuarios;
+};
+// console.log(agregarPostUsuario(usuarios, 1, { id: 5, title: "post 5", likes: 100 }));
+console.log(
+  JSON.stringify(
+    agregarPostUsuario(usuarios, 2, { id: 5, title: "post 5", likes: 100 }),
+    null,
+    2
+  )
+);
+
+//listar array de usuarios con mas de N posts
+const listarMasNPost = (usuarios, numero) => {
+  return usuarios.filter((usu) => usu.posts.length > numero);
+};
+console.log(listarMasNPost(usuarios, 2));
 ```
