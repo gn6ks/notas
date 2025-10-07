@@ -70,7 +70,7 @@ Sintaxis básica:
 ```javascript
 array.filter(function(elemento, indice, array)) {
   //retornar condicion;
-});
+};
 ```
 
 Ejemplos de funcionamiento de `.filter()`
@@ -95,7 +95,7 @@ Sintaxis básica:
 ```javascript
 array.forEach((elemento, indice, array)) {
   //instrucciones
-});
+};
 ```
 
 El método `.reduce()` se utiliza para reducir todo un array a un solo valor, por ejemplo para sumar, restar o inclusive concatenar.
